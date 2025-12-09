@@ -1,0 +1,30 @@
+services:
+  chainlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.chainlit
+    container_name: chainlit
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - USE_LOCAL_QDRANT=false
+    restart: unless-stopped
+    volumes:
+      - ./short_term_memory:/app/data
+
+  whatsapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: whatsapp
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - USE_LOCAL_QDRANT=false
+    restart: unless-stopped
+    volumes:
+      - ./short_term_memory:/app/data

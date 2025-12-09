@@ -1,0 +1,49 @@
+FROM ghcr.io/astral-sh/uv:python3.12-bookworm-slim
+
+WORKDIR /app
+
+ENV PYTHONUNBUFFERED=1
+ENV PIP_DEFAULT_TIMEOUT=300
+ENV PIP_NO_CACHE_DIR=0
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1
+ENV UV_ENV=/app/.venv
+ENV UV_HTTP_TIMEOUT=600
+ENV UV_HTTP_RETRIES=5
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    g++ \
+    ca-certificates \
+    curl \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Copy dependency files
+COPY uv.lock pyproject.toml README.md /app/
+
+# Install dependencies
+RUN --mount=type=cache,target=/root/.cache/pip \
+    --mount=type=cache,target=/app/.cache/uv \
+    uv sync --frozen
+
+# Copy source code
+COPY src/ /app/src/
+
+# Set up virtual environment
+ENV VIRTUAL_ENV=/app/.venv
+ENV PATH="/app/.venv/bin:$PATH"
+
+# Install package in editable mode
+RUN --mount=type=cache,target=/root/.cache/pip \
+    uv pip install -e .
+
+# Create data directory
+RUN mkdir -p /app/data
+
+VOLUME ["/app/data"]
+
+EXPOSE 8000
+
+# Run chainlit with correct path
+CMD ["chainlit", "run", "src/ai_companion/interfaces/chainlit/app.py", "--port", "8000", "--host", "0.0.0.0"]

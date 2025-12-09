@@ -1,0 +1,51 @@
+services:
+  chainlit:
+    build:
+      context: .
+      dockerfile: Dockerfile.chainlit
+    container_name: chainlit
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    environment:
+      - USE_LOCAL_QDRANT=false
+    restart: unless-stopped
+    volumes:
+      - ./short_term_memory:/app/data
+      - ./src:/app/src  # 👈 ADD THIS LINE (Syncs your code!)
+
+  whatsapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: whatsapp
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    environment:
+      - USE_LOCAL_QDRANT=false
+    restart: unless-stopped
+    volumes:
+      - ./short_term_memory:/app/data
+      - ./src:/app/src  # 👈 ADD THIS LINE HERE TOO
+
+  ngrok:
+    image: ngrok/ngrok:latest
+    container_name: ngrok
+    restart: unless-stopped
+    command:
+      - "http"
+      - "whatsapp:8080"
+      - "--authtoken=${NGROK_AUTH_TOKEN}"
+    ports:
+      - "4040:4040"
+    depends_on:
+      - whatsapp
+    env_file:
+      - .env
+
+  #docker-compose -f docker-compose.ngrok.yml up -d
+# docker-compose -f docker-compose.ngrok.yml down 
+# http://localhost:4040
