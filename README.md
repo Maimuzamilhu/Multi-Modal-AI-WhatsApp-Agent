@@ -135,6 +135,3 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ---
 
-<div align="center">
-  <sub>Built with ❤️ by Muzz Team</sub>
-</div>
