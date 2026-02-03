@@ -3,8 +3,8 @@ from ai_companion.interfaces.whatsapp.whatsapp_response import whatsapp_router
 
 # Create FastAPI app instance
 app = FastAPI(
-    title="Ava WhatsApp Agent",
-    description="WhatsApp interface for Ava AI companion",
+    title="Muzz WhatsApp Agent",
+    description="WhatsApp interface for Muzz AI companion",
     version="1.0.0"
 )
 
@@ -20,6 +20,6 @@ async def health_check():
 @app.get("/")
 async def root():
     return {
-        "message": "Ava WhatsApp Agent is running",
+        "message": "Muzz WhatsApp Agent is running",
         "endpoints": ["/health", "/whatsapp_response", "/docs"]
     }

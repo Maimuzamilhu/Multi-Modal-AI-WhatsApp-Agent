@@ -13,7 +13,7 @@ from ai_companion.core.schedules import (
 
 
 class ScheduleContextGenerator:
-    """Class to generate context about Ava's current activity based on schedules."""
+    """Class to generate context about Muzz's current activity based on schedules."""
 
     SCHEDULES = {
         0: MONDAY_SCHEDULE,  # Monday
