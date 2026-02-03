@@ -1,126 +1,140 @@
+
 # 🤖 Muzz - The Ultimate AI WhatsApp Companion
 
-![Muzz AI Logo](muzz_ai_logo_1770145627798.png)
+<div align="center">
+  <img src="muzz_ai_logo_1770145627798.png" alt="Muzz AI Logo" width="300" />
 
-> **"Your intelligent, multi-modal companion that lives right in WhatsApp."**
+  <br />
+  <br />
 
-Muzz is a cutting-edge AI agent designed to interact with you seamlessly through WhatsApp. It's not just a chatbot; it's a persistent companion with long-term memory, vision, voice capabilities, and awareness of its own schedule.
+  [![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://python.org)
+  [![FastAPI](https://img.shields.io/badge/FastAPI-0.109-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com)
+  [![LangChain](https://img.shields.io/badge/LangGraph-0.2-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white)](https://langchain.com)
+  [![Docker](https://img.shields.io/badge/Docker-Enabled-2496ED?style=for-the-badge&logo=docker&logoColor=white)](https://docker.com)
+  [![Supabase](https://img.shields.io/badge/Supabase-Postgres-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)](https://supabase.com)
+  [![Qdrant](https://img.shields.io/badge/Qdrant-Vector_DB-b9305c?style=for-the-badge&logo=qdrant&logoColor=white)](https://qdrant.tech)
+  [![WhatsApp](https://img.shields.io/badge/WhatsApp-Business_API-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://developers.facebook.com/docs/whatsapp)
+
+  <br />
+
+  **Build a fully autonomous, multi-modal AI agent for WhatsApp.**  
+  *Voice. Vision. Memory. Schedule Awareness.*
+</div>
 
 ---
 
-## 🚀 Key Features
+## 📖 About The Project
 
-*   **🧠 Long-Term Memory**: Remembers your conversations, preferences, and facts using **Qdrant** vector database. Note: "User loves cricket? Muzz remembers."
-*   **👁️ Vision**: Send images to Muzz, and it will analyze and discuss them with you (powered by Llama 3.2 11B Vision).
-*   **🗣️ Voice & Speech**:
-    *   **Speaks**: Responds with ultra-realistic voice notes using **ElevenLabs**.
-    *   **Listens**: Transcribes your voice notes using **Groq Whisper**.
-*   **📅 Schedule Awareness**: Muzz knows what day/time it is and can have its own routine (e.g., "I'm at the gym right now").
-*   **🎨 Image Generation**: Can generate images on demand (using Flux/Pollinations).
-*   **🔗 Multi-Interface**:
-    *   **WhatsApp**: The primary interface for daily use.
-    *   **Chainlit**: A web-based UI for debugging, memory inspection, and testing.
+**Muzz** is a state-of-the-art AI agent designed to live where you chat—WhatsApp. Unlike standard chatbots, Muzz maintains a persistent identity, remembers past conversations indefinitely, and understands the world through multiple modalities.
+
+It is built on a sophisticated **LangGraph** architecture, allowing for complex decision-making, tool usage, and autonomous state management.
+
+### ✨ Core Capabilities
+
+*   **🗣️ Human-Like Voice**: Speaks back with ultra-realistic ElevenLabs voices.
+*   **👁️ Computer Vision**: Shows it a photo, and it analyzes it in real-time.
+*   **🧠 Infinite Memory**: Uses Qdrant vector storage to "remember" facts about you forever.
+*   **⏰ Identity & Time**: Aware of its own schedule, time of day, and routine.
+*   **🎨 Creative Studio**: Generates AI images on demand.
 
 ---
 
-## 🛠️ Tech Stack
+## 🏗️ Architecture Stack
 
-Muzz is built with a modern, high-performance stack:
+This project uses a production-grade tech stack suitable for scaling:
 
-| Component | Technology | Usage |
+| Layer | Technology | Purpose |
 | :--- | :--- | :--- |
-| **Orchestration** | **LangGraph** | Manages the agent's state, memory, and complex workflows. |
-| **LLM Brain** | **Llama 3.3 / 3.1** | Running on **Groq** for lightning-fast inference. |
-| **Backend** | **FastAPI** | Handles webhooks from WhatsApp and API requests. |
-| **Database** | **Supabase** (Postgres) | Stores memory logs and structured data. |
-| **Vector DB** | **Qdrant** | Semantic search for long-term memory retrieval. |
-| **Voice** | **ElevenLabs** | Text-to-Speech (TTS) for voice notes. |
-| **Transcription**| **Whisper (Groq)** | Speech-to-Text (STT) for processing your content. |
+| **Agentic Core** | **LangGraph** | Orchestrates the "Choice-of-Thought" reasoning loop. |
+| **LLM Inference** | **Llama 3.3 (via Groq)** | Provides near-instant intelligence. |
+| **API Interface** | **FastAPI** | High-performance async webhook handler. |
+| **Knowledge Base** | **Qdrant (Vector)** | Retrieval-Augmented Generation (RAG) for memory. |
+| **Data Persistence** | **Supabase (SQL)** | Structured logs, user sessions, and analytics. |
+| **Voice Engine** | **ElevenLabs / Whisper** | Best-in-class TTS and STT models. |
 
 ---
 
-## 📂 Project Structure
+## 🚀 Getting Started
 
-```
-├── src/ai_companion/
-│   ├── core/           # Prompts, Configuration
-│   ├── graph/          # LangGraph Nodes, State, & Graph Logic
-│   ├── interfaces/     # WhatsApp Webhook & Chainlit App
-│   └── modules/        # Capabilities (Vision, Memory, Speech, Image)
-├── Dockerfile          # For the WhatsApp/FastAPI Service
-├── Dockerfile.chainlit # For the Chainlit UI Service
-├── docker-compose.yml  # Run everything together
-```
-
----
-
-## ⚡ Getting Started
+Follow these steps to deploy your own Muzz instance.
 
 ### Prerequisites
 
-*   **Docker & Docker Compose**
-*   **Python 3.12+** (if running locally without Docker)
-*   **API Keys**:
-    *   Groq API Key
-    *   ElevenLabs API Key
-    *   Qdrant API Key & URL
-    *   WhatsApp Business API Credentials (Meta Developer)
+*   **Docker Desktop** installed.
+*   **Python 3.12+** (optional, for local dev).
+*   API Keys for **Groq**, **ElevenLabs**, **Qdrant**, and **Meta/WhatsApp**.
 
-### 1. Clone & Configure
+### 1. Clone & Setup
 
-1.  Clone this repository.
-2.  Copy the example env file:
-    ```bash
-    cp .env.example .env
-    ```
-3.  Fill in your keys in `.env`.
+```bash
+git clone https://github.com/your-username/muzz-ai-agent.git
+cd muzz-ai-agent
+cp .env.example .env
+```
 
-### 2. Run with Docker (Recommended)
+> **Note**: Fill in your API keys in the `.env` file.
 
-Start the entire system (Chainlit UI + WhatsApp Endpoint):
+### 2. Launch with Docker
+
+The easiest way to run Muzz is using Docker Compose. This spins up the WhatsApp webhook endpoint and the Chainlit debugging UI.
 
 ```bash
 docker-compose up -d --build
 ```
 
-### 3. Expose to WhatsApp
+### 3. Connect WhatsApp
 
-To receive messages from WhatsApp, your local server needs to be accessible from the internet.
-
-1.  **Using Ngrok**:
+1.  Start a tunnel to your local machine (using ngrok):
     ```bash
-    ngrok http 8080
+    docker-compose -f docker-compose.ngrok.yml up -d
     ```
-2.  Copy the forwarding URL (e.g., `https://abc-123.ngrok-free.app`).
-3.  Go to your **Meta Developer App > WhatsApp > Configuration**.
-4.  Set the **Callback URL** to: `https://your-ngrok-url/webhook`
-5.  Verify the token (should match `WHATSAPP_VERIFY_TOKEN` in your `.env`).
+    *Or run manually:* `ngrok http 8080`
+2.  Copy your HTTPS forwarding URL.
+3.  Go to the **Meta Developers Portal** -> **WhatsApp** -> **Configuration**.
+4.  Paste the URL into the **Callback URL** field (append `/webhook`), e.g., `https://your-url.ngrok-free.app/webhook`.
+5.  Verify the token using the `WHATSAPP_VERIFY_TOKEN` from your `.env`.
 
 ---
 
-## 🧪 Testing
+## 🖥️ Usage
 
-### Option A: Chainlit UI (Debug Mode)
-Open `http://localhost:8000` in your browser.
-*   Chat with Muzz directly.
-*   See the "Chain of Thought" (LangGraph steps) in real-time.
-*   Inspect memories and tool calls.
+### 🕵️ Developer UI (Chainlit)
+Visit `http://localhost:8000` to interact with Muzz's brain directly.
+*   Visualize the graph execution.
+*   See tool calls and memory retrieval in real-time.
 
-### Option B: WhatsApp (Production Mode)
-Send a message to your test number.
-*   **Text**: "Hey Muzz, who are you?"
-*   **Voice**: Send a voice note.
-*   **Image**: Send a photo and ask "What do you see?"
+### 📱 WhatsApp Interface
+Send messages to your test number:
+*   **Voice Notes**: Muzz listens and replies with audio.
+*   **Images**: "What do you think of this outfit?"
+*   **Text**: General chat and assistance.
 
 ---
 
-## 🧹 Cleaning Up
+## 📂 Project Structure
 
-Stop all containers:
-```bash
-docker-compose down
+A clean, modular structure designed for maintainability.
+
+```text
+├── src/
+│   └── ai_companion/
+│       ├── core/           # ⚙️ Config & Prompts
+│       ├── graph/          # 🧠 Brain Logic (Nodes & Edges)
+│       ├── interfaces/     # 🔌 WhatsApp & Chainlit Connectors
+│       └── modules/        # 🛠️ Tools (Vision, Memory, Speech)
+├── Dockerfile              # 🐳 Production Image
+├── docker-compose.yml      # 🐙 Orchestration
+└── pyproject.toml          # 📦 Dependencies (managed by UV)
 ```
 
 ---
 
-*Built with ❤️.*
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+---
+
+<div align="center">
+  <sub>Built with ❤️ by Muzz Team</sub>
+</div>
